@@ -6,7 +6,7 @@ module.exports = {
 		description: 'Jeu de stratégie immaginé par @MsieurLeProf',
 		keywords: 'Game, Node.js, Angular, MongoDB, Express, Strategy, School'
 	},
-	port: process.env.PORT || 1337,
+	port: process.env.PORT || 3000,
 	templateEngine: 'swig',
 	sessionSecret: 'MEAN',
 	sessionCollection: 'sessions',
