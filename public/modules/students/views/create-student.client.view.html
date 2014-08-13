@@ -20,21 +20,39 @@
 							<label data-ng-for="c._id">
 								<input type="radio" 
 									data-ng-value="c._id"
+									name="course"
 									data-ng-model="$parent.course"
 									id="c._id" />
 									{{ c.name }}
+							</label>
+						</div>
+
+						<div class="radio">
+							<label for="no-course-radio">
+								<input type="radio" 
+									data-ng-value="null"
+									name="course"
+									id="no-course-radio"
+									data-ng-model="$parent.course" />
+									None
 							</label>
 						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label" for="attributes">Attributes</label>
+					<label class="control-label" for="attributes">Description</label>
 					<div class="controls">
-						<div class="form-attribute" data-ng-repeat="(name, attr) in attrList">
-							<label for="attr-{{ name }}">{{ name | attributeName }}</label>
-							<input id="attr-{{ name }}" type="range" min="{{ attr.min }}" max="{{ attr.max }}" data-ng-bind="$parent.attributes[name]" step="0.1" />
-							<input id="attr-{{ name }}-field" type="number" min="{{ attr.min }}" max="{{ attr.max }}" data-ng-bind="$parent.attributes[name]" step="0.1"
+						<input type="text" data-ng-model="description" class="form-control" placeholder="Description" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label" for="attributes">Attributes</label>
+					<div class="controls row">
+						<div class="form-attribute col-xs-4" data-ng-repeat="(name, attr) in attrList">
+							<label for="attr-{{ name }}" data-ng-bind="(name | attributeName) + ': ' + $parent.attributes[name]"></label>
+							<input id="attr-{{ name }}" type="range" min="{{ attr.min }}" max="{{ attr.max }}" data-ng-model="$parent.attributes[name]" step="0.1" />
 						</div>
 					</div>
 				</div>

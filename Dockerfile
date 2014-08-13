@@ -26,5 +26,5 @@ ENV NODE_ENV development
 # Port 3000 for server
 # Port 35729 for livereload
 # Port 5858 for debugger
-EXPOSE 3000 35729 5858
+EXPOSE 5858 3000 35729
 CMD ["grunt"]

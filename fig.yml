@@ -3,9 +3,9 @@ web:
   links:
    - db
   ports:
+   - "5858:5858"
    - "3000:3000"
    - "35729:35729"
-   - "5858:5858"
   volumes:
    - .:/home/mean
   environment: 

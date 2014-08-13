@@ -1,15 +1,21 @@
 'use strict';
 
 // Students controller
-angular.module('students').controller('StudentsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Students',
-	function($scope, $stateParams, $location, Authentication, Students ) {
+angular.module('students').controller('StudentsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Students', 'Courses',
+	function($scope, $stateParams, $location, Authentication, Students, Courses ) {
 		$scope.authentication = Authentication;
 
 		// Create new Student
 		$scope.create = function() {
 			// Create new Student object
 			var student = new Students ({
-				name: this.name
+				name: {
+          first: this.first_name,
+          last: this.last_name
+        },
+        course: this.course,
+        description: this.description,
+        attributes: $scope.attributes
 			});
 
 			// Redirect after save
@@ -80,17 +86,17 @@ angular.module('students').controller('StudentsController', ['$scope', '$statePa
         min: 0,
         max: 100
       },
-      teacher_relation: {
+      teacher_relationship: {
         default: 0,
         min: -1,
         max: 1
       },
-      other_relation: {
+      other_relationship: {
         default: 0,
         min: -1,
         max: 1
       },
-      school_relation: {
+      school_relationship: {
         default: 0,
         min: -1,
         max: 1
@@ -115,6 +121,14 @@ angular.module('students').controller('StudentsController', ['$scope', '$statePa
     for(var i in $scope.attrList) {
       $scope.attributes[i] = $scope.attrList[i].default;
     }
+
+    Courses.query(function(courses) {
+      $scope.courses = courses;
+    }, function(err) {
+      throw err;
+    });
+
+    $scope.course = null;
   }
 
 ]);
