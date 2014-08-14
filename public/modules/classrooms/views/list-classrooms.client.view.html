@@ -1,0 +1,19 @@
+<section data-ng-controller="ClassroomsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Classrooms</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="classroom in classrooms" data-ng-href="#!/classrooms/{{classroom._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="classroom.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="classroom.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="classroom.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!classrooms.$resolved || classrooms.length">
+    	No Classrooms yet, why don't you <a href="/#!/classrooms/create">create one</a>?
+    </div>
+</section>
