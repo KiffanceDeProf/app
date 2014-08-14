@@ -68,7 +68,7 @@ angular.module('classrooms').controller('ClassroomsController', ['$scope', '$sta
 		};
 
 		$scope.classroom_map = [];
-		$scope.cellAttributes = ["desk", "door", "heater", "window", "blackboard", "teacher_desk"];
+		$scope.cellAttributes = ['desk', 'door', 'heater', 'window', 'blackboard', 'teacher_desk'];
 
 		function updateMap(height, width, map) {
 			var i, j;
