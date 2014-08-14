@@ -71,6 +71,11 @@ angular.module('students').controller('StudentsController', ['$scope', '$statePa
     $scope.attributes = {};
 
     $scope.attrList = {
+      mark: {
+        default: 10,
+        min: 0,
+        max: 20
+      },
       mood: {
         default: 50,
         min: 0,

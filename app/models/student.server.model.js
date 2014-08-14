@@ -43,6 +43,13 @@ var StudentSchema = new Schema({
     trim: true
   },
   attributes: {
+    mark : {
+      type: Number,
+      required: true,
+      default: 10,
+      min: 0,
+      max: 20
+    },
     mood: {
       type: Number,
       required: true,
