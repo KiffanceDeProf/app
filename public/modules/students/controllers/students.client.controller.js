@@ -10,20 +10,25 @@ angular.module('students').controller('StudentsController', ['$scope', '$statePa
 			// Create new Student object
 			var student = new Students ({
 				name: {
-          first: this.first_name,
-          last: this.last_name
-        },
-        course: this.course,
-        description: this.description,
-        attributes: $scope.attributes
+					first: this.first_name,
+					last: this.last_name
+				},
+				course: this.course,
+				description: this.description,
+				attributes: $scope.attributes
 			});
+
 
 			// Redirect after save
 			student.$save(function(response) {
 				$location.path('students/' + response._id);
 
 				// Clear form fields
-				$scope.name = '';
+				$scope.first_name = '';
+				$scope.last_name = '';
+				$scope.course = '';
+				$scope.description = '';
+				$scope.initAttributes();
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -68,72 +73,71 @@ angular.module('students').controller('StudentsController', ['$scope', '$statePa
 			});
 		};
 
-    $scope.attributes = {};
+		$scope.attrList = {
+			mark: {
+				default: 10,
+				min: 0,
+				max: 20
+			},
+			mood: {
+				default: 50,
+				min: 0,
+				max: 100
+			},
+			mind: {
+				default: 50,
+				min: 0,
+				max: 100
+			},
+			vision: {
+				default: 50,
+				min: 0,
+				max: 100
+			},
+			teacher_relationship: {
+				default: 0,
+				min: -1,
+				max: 1
+			},
+			other_relationship: {
+				default: 0,
+				min: -1,
+				max: 1
+			},
+			school_relationship: {
+				default: 0,
+				min: -1,
+				max: 1
+			},
+			popularity: {
+				default: 0,
+				min: -1,
+				max: 1
+			},
+			behaviour: {
+				default: 0,
+				min: -1,
+				max: 1
+			},
+			height: { // Arbitraire, ou réelle ? genre [-1, 1] ou [1m10, 1m80] ?
+				default: 0,
+				min: -1,
+				max: 1
+			}
+		};
 
-    $scope.attrList = {
-      mark: {
-        default: 10,
-        min: 0,
-        max: 20
-      },
-      mood: {
-        default: 50,
-        min: 0,
-        max: 100
-      },
-      mind: {
-        default: 50,
-        min: 0,
-        max: 100
-      },
-      vision: {
-        default: 50,
-        min: 0,
-        max: 100
-      },
-      teacher_relationship: {
-        default: 0,
-        min: -1,
-        max: 1
-      },
-      other_relationship: {
-        default: 0,
-        min: -1,
-        max: 1
-      },
-      school_relationship: {
-        default: 0,
-        min: -1,
-        max: 1
-      },
-      popularity: {
-        default: 0,
-        min: -1,
-        max: 1
-      },
-      behaviour: {
-        default: 0,
-        min: -1,
-        max: 1
-      },
-      height: { // Arbitraire, ou réelle ? genre [-1, 1] ou [1m10, 1m80] ?
-        default: 0,
-        min: -1,
-        max: 1
-      }
-    };
+		$scope.initAttributes = function() {
+			$scope.attributes = {};
+			for(var i in $scope.attrList) {
+				$scope.attributes[i] = $scope.attrList[i].default;
+			}
+		};
 
-    for(var i in $scope.attrList) {
-      $scope.attributes[i] = $scope.attrList[i].default;
-    }
+		$scope.getCourses = function() {
+			$scope.courses = Courses.query();
+		};
 
-    Courses.query(function(courses) {
-      $scope.courses = courses;
-    }, function(err) {
-      throw err;
-    });
-
-    $scope.course = null;
-  }
+		$scope.course = null;
+	}
 
 ]);

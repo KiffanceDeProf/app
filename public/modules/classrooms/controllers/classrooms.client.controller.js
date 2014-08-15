@@ -13,7 +13,7 @@ angular.module('classrooms').controller('ClassroomsController', ['$scope', '$sta
 				map: this.classroom_map,
 				size: {
 					height: this.classroom_height,
-					width: this.classromm_width
+					width: this.classroom_width
 				}
 			});
 
@@ -23,6 +23,9 @@ angular.module('classrooms').controller('ClassroomsController', ['$scope', '$sta
 
 				// Clear form fields
 				$scope.name = '';
+        $scope.classroom_map = [];
+        $scope.classroom_height = 4;
+        $scope.classroom_width = 4;
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

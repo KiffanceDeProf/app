@@ -62,11 +62,9 @@ angular.module('games').controller('GamesController', ['$scope', '$stateParams',
 			});
 		};
 
-		Courses.query(function(courses) {
-			$scope.courses = courses;
-		}, function(err) {
-			throw err;
-		});
+    $scope.findCourses = function() {
+  		$scope.courses = Courses.query();
+    };
 
 		$scope.course = null;
 	}

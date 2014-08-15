@@ -10,8 +10,8 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
 			// Create new Course object
 			var course = new Courses ({
 				name: this.name,
-        description: this.description,
-        type: this.type
+				description: this.description,
+				type: this.type
 			});
 
 			// Redirect after save
@@ -20,6 +20,8 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
 
 				// Clear form fields
 				$scope.name = '';
+				$scope.description = '';
+				$scope.type = null;
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -53,7 +55,7 @@ angular.module('courses').controller('CoursesController', ['$scope', '$statePara
 		};
 
 		// Find a list of Courses
-		this.find = function() {
+		$scope.find = function() {
 			$scope.courses = Courses.query();
 		};
 

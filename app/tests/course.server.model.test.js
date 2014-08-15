@@ -30,6 +30,8 @@ describe('Course Model Unit Tests:', function() {
 		user.save(function() { 
 			course = new Course({
 				name: 'Course Name',
+        description: 'Course description',
+        type: 4,
 				user: user
 			});
 

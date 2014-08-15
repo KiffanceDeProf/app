@@ -53,7 +53,23 @@
 		it('$scope.find() should create an array with at least one Student object fetched from XHR', inject(function(Students) {
 			// Create sample Student using the Students service
 			var sampleStudent = new Students({
-				name: 'New Student'
+				name: {
+          first: 'New',
+          last: 'Student'
+        },
+        course: null,
+        attributes: {
+          behaviour: 0,
+          height: 0,
+          mark: 10,
+          mind: 50,
+          mood: 50,
+          other_relationship: 0,
+          popularity: 0,
+          school_relationship: 0,
+          teacher_relationship: 0,
+          vision: 50
+        }
 			});
 
 			// Create a sample Students array that includes the new Student
@@ -73,7 +89,23 @@
 		it('$scope.findOne() should create an array with one Student object fetched from XHR using a studentId URL parameter', inject(function(Students) {
 			// Define a sample Student object
 			var sampleStudent = new Students({
-				name: 'New Student'
+				name: {
+          first: 'New',
+          last: 'Student'
+        },
+        course: null,
+        attributes: {
+          behaviour: 0,
+          height: 0,
+          mark: 10,
+          mind: 50,
+          mood: 50,
+          other_relationship: 0,
+          popularity: 0,
+          school_relationship: 0,
+          teacher_relationship: 0,
+          vision: 50
+        }
 			});
 
 			// Set the URL parameter
@@ -93,17 +125,50 @@
 		it('$scope.create() with valid form data should send a POST request with the form input values and then locate to new object URL', inject(function(Students) {
 			// Create a sample Student object
 			var sampleStudentPostData = new Students({
-				name: 'New Student'
+				name: {
+          first: 'New',
+          last: 'Student'
+        },
+        course: null,
+        attributes: {
+          behaviour: 0,
+          height: 0,
+          mark: 10,
+          mind: 50,
+          mood: 50,
+          other_relationship: 0,
+          popularity: 0,
+          school_relationship: 0,
+          teacher_relationship: 0,
+          vision: 50
+        }
 			});
 
 			// Create a sample Student response
 			var sampleStudentResponse = new Students({
 				_id: '525cf20451979dea2c000001',
-				name: 'New Student'
+				name: {
+          first: 'New',
+          last: 'Student'
+        },
+        course: null,
+        attributes: {
+          behaviour: 0,
+          height: 0,
+          mark: 10,
+          mind: 50,
+          mood: 50,
+          other_relationship: 0,
+          popularity: 0,
+          school_relationship: 0,
+          teacher_relationship: 0,
+          vision: 50
+        }
 			});
 
 			// Fixture mock form input values
-			scope.name = 'New Student';
+      scope.first_name = 'New';
+			scope.last_name = 'Student';
 
 			// Set POST response
 			$httpBackend.expectPOST('students', sampleStudentPostData).respond(sampleStudentResponse);
@@ -113,7 +178,8 @@
 			$httpBackend.flush();
 
 			// Test form inputs are reset
-			expect(scope.name).toEqual('');
+      expect(scope.first_name).toEqual('');
+			expect(scope.last_name).toEqual('');
 
 			// Test URL redirection after the Student was created
 			expect($location.path()).toBe('/students/' + sampleStudentResponse._id);
@@ -123,7 +189,23 @@
 			// Define a sample Student put data
 			var sampleStudentPutData = new Students({
 				_id: '525cf20451979dea2c000001',
-				name: 'New Student'
+				name: {
+          first: 'New',
+          last: 'Student'
+        },
+        course: null,
+        attributes: {
+          behaviour: 0,
+          height: 0,
+          mark: 10,
+          mind: 50,
+          mood: 50,
+          other_relationship: 0,
+          popularity: 0,
+          school_relationship: 0,
+          teacher_relationship: 0,
+          vision: 50
+        }
 			});
 
 			// Mock Student in scope

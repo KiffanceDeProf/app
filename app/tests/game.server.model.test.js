@@ -5,13 +5,14 @@
  */
 var should = require('should'),
 	mongoose = require('mongoose'),
-	User = mongoose.model('User'),
+  User = mongoose.model('User'),
+	Course = mongoose.model('Course'),
 	Game = mongoose.model('Game');
 
 /**
  * Globals
  */
-var user, game;
+var user, game, course;
 
 /**
  * Unit tests
@@ -27,9 +28,15 @@ describe('Game Model Unit Tests:', function() {
 			password: 'password'
 		});
 
+    course = new Course({
+      name: 'Course name',
+      description: 'Course description',
+      type: 4
+    });
+
 		user.save(function() { 
 			game = new Game({
-				name: 'Game Name',
+				course: course,
 				user: user
 			});
 
@@ -45,8 +52,8 @@ describe('Game Model Unit Tests:', function() {
 			});
 		});
 
-		it('should be able to show an error when try to save without name', function(done) { 
-			game.name = '';
+		it('should be able to show an error when try to save without course', function(done) { 
+			game.course = null;
 
 			return game.save(function(err) {
 				should.exist(err);
@@ -57,7 +64,8 @@ describe('Game Model Unit Tests:', function() {
 
 	afterEach(function(done) { 
 		Game.remove().exec();
-		User.remove().exec();
+    User.remove().exec();
+		Course.remove().exec();
 
 		done();
 	});

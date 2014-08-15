@@ -29,8 +29,23 @@ describe('Student Model Unit Tests:', function() {
 
 		user.save(function() { 
 			student = new Student({
-				name: 'Student Name',
-				user: user
+				name: {
+					first: 'Student',
+					last: 'Name'
+				},
+				user: user,
+				attributes: {
+					behaviour: 0,
+					height: 0,
+					mark: 10,
+					mind: 50,
+					mood: 50,
+					other_relationship: 0,
+					popularity: 0,
+					school_relationship: 0,
+					teacher_relationship: 0,
+					vision: 50
+				}
 			});
 
 			done();
@@ -46,7 +61,7 @@ describe('Student Model Unit Tests:', function() {
 		});
 
 		it('should be able to show an error when try to save without name', function(done) { 
-			student.name = '';
+			student.name = {};
 
 			return student.save(function(err) {
 				should.exist(err);

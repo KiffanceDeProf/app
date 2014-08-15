@@ -53,7 +53,7 @@
 		it('$scope.find() should create an array with at least one Game object fetched from XHR', inject(function(Games) {
 			// Create sample Game using the Games service
 			var sampleGame = new Games({
-				name: 'New Game'
+				course: '525a8422f6d0f87f0e407a33'
 			});
 
 			// Create a sample Games array that includes the new Game
@@ -73,7 +73,7 @@
 		it('$scope.findOne() should create an array with one Game object fetched from XHR using a gameId URL parameter', inject(function(Games) {
 			// Define a sample Game object
 			var sampleGame = new Games({
-				name: 'New Game'
+				course: '525a8422f6d0f87f0e407a33'
 			});
 
 			// Set the URL parameter
@@ -93,17 +93,17 @@
 		it('$scope.create() with valid form data should send a POST request with the form input values and then locate to new object URL', inject(function(Games) {
 			// Create a sample Game object
 			var sampleGamePostData = new Games({
-				name: 'New Game'
+				course: '525a8422f6d0f87f0e407a33'
 			});
 
 			// Create a sample Game response
 			var sampleGameResponse = new Games({
 				_id: '525cf20451979dea2c000001',
-				name: 'New Game'
+				course: '525a8422f6d0f87f0e407a33'
 			});
 
 			// Fixture mock form input values
-			scope.name = 'New Game';
+			scope.course = '525a8422f6d0f87f0e407a33';
 
 			// Set POST response
 			$httpBackend.expectPOST('games', sampleGamePostData).respond(sampleGameResponse);
@@ -113,7 +113,7 @@
 			$httpBackend.flush();
 
 			// Test form inputs are reset
-			expect(scope.name).toEqual('');
+			expect(scope.course).toEqual('');
 
 			// Test URL redirection after the Game was created
 			expect($location.path()).toBe('/games/' + sampleGameResponse._id);
@@ -123,7 +123,7 @@
 			// Define a sample Game put data
 			var sampleGamePutData = new Games({
 				_id: '525cf20451979dea2c000001',
-				name: 'New Game'
+				course: '525a8422f6d0f87f0e407a33'
 			});
 
 			// Mock Game in scope

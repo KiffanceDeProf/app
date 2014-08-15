@@ -53,7 +53,18 @@
 		it('$scope.find() should create an array with at least one Classroom object fetched from XHR', inject(function(Classrooms) {
 			// Create sample Classroom using the Classrooms service
 			var sampleClassroom = new Classrooms({
-				name: 'New Classroom'
+				name: 'New Classroom',
+        map: [
+          [['desk'], [], [], ['desk']],
+          [[], [], [], []],
+          [['desk'], [], [], ['desk']],
+          [[], [], [], ['tescher_desk']],
+          [[], ['blackboard'], ['blackboard'], []],
+        ],
+        size: {
+          height: 4,
+          width: 4
+        }
 			});
 
 			// Create a sample Classrooms array that includes the new Classroom
@@ -73,7 +84,18 @@
 		it('$scope.findOne() should create an array with one Classroom object fetched from XHR using a classroomId URL parameter', inject(function(Classrooms) {
 			// Define a sample Classroom object
 			var sampleClassroom = new Classrooms({
-				name: 'New Classroom'
+				name: 'New Classroom',
+        map: [
+          [['desk'], [], [], ['desk']],
+          [[], [], [], []],
+          [['desk'], [], [], ['desk']],
+          [[], [], [], ['tescher_desk']],
+          [[], ['blackboard'], ['blackboard'], []],
+        ],
+        size: {
+          height: 4,
+          width: 4
+        }
 			});
 
 			// Set the URL parameter
@@ -93,17 +115,48 @@
 		it('$scope.create() with valid form data should send a POST request with the form input values and then locate to new object URL', inject(function(Classrooms) {
 			// Create a sample Classroom object
 			var sampleClassroomPostData = new Classrooms({
-				name: 'New Classroom'
+				name: 'New Classroom',
+        map: [
+          [['desk'], [], [], ['desk']],
+          [[], [], [], []],
+          [['desk'], [], [], ['desk']],
+          [[], [], [], ['tescher_desk']],
+          [[], ['blackboard'], ['blackboard'], []],
+        ],
+        size: {
+          height: 4,
+          width: 4
+        }
 			});
 
 			// Create a sample Classroom response
 			var sampleClassroomResponse = new Classrooms({
 				_id: '525cf20451979dea2c000001',
-				name: 'New Classroom'
+				name: 'New Classroom',
+        map: [
+          [['desk'], [], [], ['desk']],
+          [[], [], [], []],
+          [['desk'], [], [], ['desk']],
+          [[], [], [], ['tescher_desk']],
+          [[], ['blackboard'], ['blackboard'], []],
+        ],
+        size: {
+          height: 4,
+          width: 4
+        }
 			});
 
 			// Fixture mock form input values
-			scope.name = 'New Classroom';
+      scope.name = 'New Classroom';
+      scope.classroom_width = 4;
+      scope.classroom_height = 4;
+      scope.classroom_map = [
+        [['desk'], [], [], ['desk']],
+        [[], [], [], []],
+        [['desk'], [], [], ['desk']],
+        [[], [], [], ['tescher_desk']],
+        [[], ['blackboard'], ['blackboard'], []],
+      ];
 
 			// Set POST response
 			$httpBackend.expectPOST('classrooms', sampleClassroomPostData).respond(sampleClassroomResponse);
@@ -123,7 +176,18 @@
 			// Define a sample Classroom put data
 			var sampleClassroomPutData = new Classrooms({
 				_id: '525cf20451979dea2c000001',
-				name: 'New Classroom'
+				name: 'New Classroom',
+        map: [
+          [['desk'], [], [], ['desk']],
+          [[], [], [], []],
+          [['desk'], [], [], ['desk']],
+          [[], [], [], ['tescher_desk']],
+          [[], ['blackboard'], ['blackboard'], []],
+        ],
+        size: {
+          height: 4,
+          width: 4
+        }
 			});
 
 			// Mock Classroom in scope
