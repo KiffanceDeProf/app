@@ -129,7 +129,7 @@
           first: 'New',
           last: 'Student'
         },
-        course: null,
+        course: '525cf20451979dea2c000001',
         attributes: {
           behaviour: 0,
           height: 0,
@@ -151,7 +151,7 @@
           first: 'New',
           last: 'Student'
         },
-        course: null,
+        course: '525cf20451979dea2c000001',
         attributes: {
           behaviour: 0,
           height: 0,
@@ -169,6 +169,20 @@
 			// Fixture mock form input values
       scope.first_name = 'New';
 			scope.last_name = 'Student';
+      scope.attributes = {
+        behaviour: 0,
+        height: 0,
+        mark: 10,
+        mind: 50,
+        mood: 50,
+        other_relationship: 0,
+        popularity: 0,
+        school_relationship: 0,
+        teacher_relationship: 0,
+        vision: 50
+      };
+      scope.course = '525cf20451979dea2c000001';
+
 
 			// Set POST response
 			$httpBackend.expectPOST('students', sampleStudentPostData).respond(sampleStudentResponse);
