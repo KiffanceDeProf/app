@@ -105,13 +105,13 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-        ngmin: {
-            production: {
-                files: {
-                    'public/dist/application.js': '<%= applicationJavaScriptFiles %>'
-                }
-            }
-        },
+		ngmin: {
+			production: {
+				files: {
+					'public/dist/application.js': '<%= applicationJavaScriptFiles %>'
+				}
+			}
+		},
 		concurrent: {
 			default: ['nodemon', 'watch'],
 			debug: ['nodemon', 'watch', 'node-inspector'],
@@ -124,18 +124,32 @@ module.exports = function(grunt) {
 				NODE_ENV: 'test'
 			}
 		},
-		mochaTest: {
-			src: watchFiles.mochaTests,
-			options: {
-				reporter: 'spec',
-				require: 'server.js'
-			}
+		mochacov: {
+			test: {
+        options: {
+          reporter: 'spec',
+        }
+      },
+      coverage: {
+        options: {
+          coveralls: true
+        }
+      },
+      options: {
+        files: watchFiles.mochaTests,
+        require: ['server.js']
+      }
 		},
 		karma: {
 			unit: {
 				configFile: 'karma.conf.js'
 			}
-		}
+		},
+    coveralls: {
+      options: {
+        coverage_dir: 'coverage/'
+      }
+    }
 	});
 
 	// Load NPM tasks 
@@ -166,5 +180,6 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', ['lint', 'loadConfig', 'ngmin', 'uglify', 'cssmin']);
 
 	// Test task.
-	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+  grunt.registerTask('test', ['env:test', 'mochacov:test', 'karma:unit']);
+	grunt.registerTask('travis', ['env:test', 'mochacov:coverage', 'karma:unit', 'coveralls']);
 };
