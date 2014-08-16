@@ -5,4 +5,4 @@ env:
   - NODE_ENV=travis
 services:
   - mongodb
-script: npm script travis
+script: npm run-script travis
